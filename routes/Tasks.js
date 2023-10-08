@@ -20,8 +20,8 @@ tasksRouter.get("/api/getGroups/:userId", async (req, res) => {
 
 //! ADD GROUP
 tasksRouter.post("/api/addGroup/:userId", async (req, res) => {
-  const userId = req.params.userId;
   try {
+    const userId = req.params.userId;
     const { name, iconName, iconColor, iconType, backgroundColor } = req.body;
     const user = await User.findById(userId);
     if (!user) {
@@ -100,7 +100,7 @@ tasksRouter.delete("/api/deleteGroup/:userId/:listId", async (req, res) => {
     }
 
     todoList.deleteOne();
-    
+
     await user.save();
     res.status(200).json(user.listOfTodos);
   } catch (err) {
@@ -135,9 +135,9 @@ tasksRouter.get("/api/getTasks/:userId/:listId", async (req, res) => {
 
 //! ADD TASK
 tasksRouter.post("/api/addTask/:userId/:listId", async (req, res) => {
-  const userId = req.params.userId;
-  const listId = req.params.listId;
   try {
+    const userId = req.params.userId;
+    const listId = req.params.listId;
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ msg: "User not found!" });
@@ -167,13 +167,12 @@ tasksRouter.post("/api/addTask/:userId/:listId", async (req, res) => {
 });
 
 //! UPDATE TASK
-// TODO: UPDATE TASK NOT TESTED YET
 tasksRouter.put("/api/updateTask/:userId/:listId/:taskId", async (req, res) => {
-  const userId = req.params.userId;
-  const listId = req.params.listId;
-  const taskId = req.params.taskId;
-  const { todoTitle, todoDesc, isDone } = req.body;
   try {
+    const taskId = req.params.taskId;
+    const listId = req.params.listId;
+    const userId = req.params.userId;
+    const { todoTitle, todoDesc, isDone } = req.body;
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ msg: "User not found!" });
