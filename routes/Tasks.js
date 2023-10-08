@@ -83,6 +83,31 @@ tasksRouter.put("/api/updateGroup/:userId/:listId", async (req, res) => {
   }
 });
 
+//! DELETE GROUP
+tasksRouter.delete("/api/deleteGroup/:userId/:listId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const listId = req.params.listId;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ msg: "User not found!" });
+    }
+    const todoList = user.listOfTodos.find(
+      (list) => list._id.toString() === listId
+    );
+    if (!todoList) {
+      return res.status(404).json({ msg: "List not found!" });
+    }
+
+    todoList.deleteOne();
+    
+    await user.save();
+    res.status(200).json(user.listOfTodos);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 //! TASKS
 
 //! GET ALL TASKS
