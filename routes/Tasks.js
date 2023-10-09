@@ -212,32 +212,37 @@ tasksRouter.put("/api/updateTask/:userId/:listId/:taskId", async (req, res) => {
 });
 
 //! DELETE TASK
-// TODO: DELETE TASK NOT TESTED YET
-tasksRouter.delete("/api/deleteTask", async (req, res) => {
-  try {
-    const { userId, todoId } = req.body;
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({ msg: "User not found!" });
+tasksRouter.delete(
+  "/api/deleteTask/:userId/:listId/:taskId",
+  async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      const listId = req.params.listId;
+      const taskId = req.params.taskId;
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).json({ msg: "User not found!" });
+      }
+      const todoList = await user.listOfTodos.find(
+        (t) => t._id.toString() === listId
+      );
+      if (!todoList) {
+        return res.status(404).json({ msg: "TodoList not found!" });
+      }
+      const taskToDelete = todoList.todos.find(
+        (task) => task._id.toString() === taskId
+      );
+      if (!taskToDelete) {
+        return res.status(404).json({ msg: "Task not found!" });
+      }
+
+      taskToDelete.deleteOne();
+      await user.save();
+      res.status(200).json({ msg: "Task deleted!", data: user.listOfTodos });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
-    const todoList = await user.listOfTodos.find(
-      (t) => t._id.toString() === todoId
-    );
-    if (!todoList) {
-      return res.status(404).json({ msg: "TodoList not found!" });
-    }
-    const todoIndex = todoList.todos.findIndex(
-      (t) => t._id.toString() === todoId
-    );
-    if (todoIndex === -1) {
-      return res.status(404).json({ msg: "Todo not found!" });
-    }
-    todoList.todos.splice(todoIndex, 1);
-    await user.save();
-    res.json(todoList.todos);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
   }
-});
+);
 
 module.exports = tasksRouter;
