@@ -21,16 +21,13 @@ tasksRouter.get("/api/getGroups/:userId", async (req, res) => {
 tasksRouter.post("/api/addGroup/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
-    const { name, iconName, iconColor, iconType, backgroundColor } = req.body;
+    const { name, backgroundColor } = req.body;
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ msg: "User not found!" });
     }
     const todoList = {
       name,
-      iconName,
-      iconColor,
-      iconType,
       backgroundColor
     };
     user.listOfTodos.push(todoList);
