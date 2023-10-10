@@ -3,7 +3,6 @@ const User = require("../models/UserModel");
 const tasksRouter = express.Router();
 
 //! GROUPS
-
 //! GET GROUPS
 tasksRouter.get("/api/getGroups/:userId", async (req, res) => {
   try {
@@ -109,7 +108,6 @@ tasksRouter.delete("/api/deleteGroup/:userId/:listId", async (req, res) => {
 });
 
 //! TASKS
-
 //! GET ALL TASKS
 tasksRouter.get("/api/getTasks/:userId/:listId", async (req, res) => {
   try {
