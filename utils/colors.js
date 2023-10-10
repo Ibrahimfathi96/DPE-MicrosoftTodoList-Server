@@ -6,6 +6,8 @@ const colors = {
   LIGHT_GREY: "#9CA0A3",
   DARK_GREY: "#5F6189",
   BLUE: "#788cde",
+  LIGHT_BLUE: "#48ADF0",
+  SHADE_BLUE: "#195ABD",
   LIGHTER_PINK: "#FFE4E9",
   LIGHT_PINK: "#ffa5e0",
   PINK: "#e46c8c",
