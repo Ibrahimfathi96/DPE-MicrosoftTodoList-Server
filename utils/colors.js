@@ -1,6 +1,5 @@
 const colors = {
   DEFAULT: "#5D70BD",
-  WHITE: "#fff",
   BLACK: "#000",
   GREY: "#5E6585",
   LIGHT_GREY: "#9CA0A3",

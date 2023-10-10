@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const COLORS = require("../utils/colors");
 
 const userSchema = new mongoose.Schema(
   {
@@ -34,26 +33,7 @@ const userSchema = new mongoose.Schema(
           },
           iconColor: {
             type: String,
-            enum: [
-              COLORS.DEFAULT,
-              COLORS.WHITE,
-              COLORS.BLACK,
-              COLORS.GREY,
-              COLORS.LIGHT_GREY,
-              COLORS.DARK_GREY,
-              COLORS.BLUE,
-              COLORS.LIGHTER_PINK,
-              COLORS.LIGHT_PINK,
-              COLORS.PINK,
-              COLORS.TURQUOISE,
-              COLORS.ORANGE,
-              COLORS.DARK_GREEN,
-              COLORS.LIGHT_GREEN,
-              COLORS.LIGHTER_GREEN,
-              COLORS.DARK_RED,
-              COLORS.YELLOW
-            ],
-            default: COLORS.DEFAULT
+            default: "#5D70BD"
           },
           iconType: {
             type: String,
@@ -61,26 +41,7 @@ const userSchema = new mongoose.Schema(
           },
           backgroundColor: {
             type: String,
-            enum: [
-              COLORS.DEFAULT,
-              COLORS.WHITE,
-              COLORS.BLACK,
-              COLORS.GREY,
-              COLORS.LIGHT_GREY,
-              COLORS.DARK_GREY,
-              COLORS.BLUE,
-              COLORS.LIGHTER_PINK,
-              COLORS.LIGHT_PINK,
-              COLORS.PINK,
-              COLORS.TURQUOISE,
-              COLORS.ORANGE,
-              COLORS.DARK_GREEN,
-              COLORS.LIGHT_GREEN,
-              COLORS.LIGHTER_GREEN,
-              COLORS.DARK_RED,
-              COLORS.YELLOW
-            ],
-            default: COLORS.DEFAULT
+            default: "#5D70BD"
           },
           todos: {
             type: [
@@ -104,8 +65,8 @@ const userSchema = new mongoose.Schema(
         {
           name: "My Day",
           iconName: "wb-sunny",
-          iconColor: COLORS.LIGHT_GREY,
-          backgroundColor: COLORS.DARK_GREEN,
+          iconColor: "#5F6189",
+          backgroundColor: "#235C47",
           iconType: "material",
           todos: [
             {
@@ -138,8 +99,8 @@ const userSchema = new mongoose.Schema(
         {
           name: "Important",
           iconName: "star-border",
-          iconColor: COLORS.DARK_RED,
-          backgroundColor: COLORS.LIGHTER_PINK,
+          iconColor: "#8A3655",
+          backgroundColor: "#ffa5e0",
           iconType: "material",
           todos: [
             {
@@ -152,8 +113,8 @@ const userSchema = new mongoose.Schema(
         {
           name: "Planned",
           iconName: "calendar-today",
-          iconColor: COLORS.DARK_GREEN,
-          backgroundColor: COLORS.LIGHTER_GREEN,
+          iconColor: "#235C47",
+          backgroundColor: "#D5F1E5",
           iconType: "material",
           todos: [
             {
@@ -166,8 +127,8 @@ const userSchema = new mongoose.Schema(
         {
           name: "Assigned to me",
           iconName: "person",
-          iconColor: COLORS.DARK_GREEN,
-          backgroundColor: COLORS.LIGHTER_GREEN,
+          iconColor: "#235C47",
+          backgroundColor: "#D5F1E5",
           iconType: "material",
           todos: [
             {
@@ -180,8 +141,8 @@ const userSchema = new mongoose.Schema(
         {
           name: "Flagged emails",
           iconName: "outlined-flag",
-          iconColor: COLORS.DARK_GREEN,
-          backgroundColor: COLORS.DEFAULT,
+          iconColor: "#235C47",
+          backgroundColor: "#5D70BD",
           iconType: "material",
           todos: [
             {
@@ -194,8 +155,8 @@ const userSchema = new mongoose.Schema(
         {
           name: "Tasks",
           iconName: "check-box",
-          iconColor: COLORS.GREY,
-          backgroundColor: COLORS.DEFAULT,
+          iconColor: "#5F6189",
+          backgroundColor: "#5D70BD",
           iconType: "material",
           todos: [
             {
@@ -208,8 +169,8 @@ const userSchema = new mongoose.Schema(
         {
           name: "Getting started",
           iconName: "hand-wave-outline",
-          iconColor: COLORS.YELLOW,
-          backgroundColor: COLORS.DEFAULT,
+          iconColor: "#F3B708",
+          backgroundColor: "#5D70BD",
           iconType: "material-community",
           todos: [
             {
@@ -254,8 +215,8 @@ const userSchema = new mongoose.Schema(
         {
           name: "Groceries",
           iconName: "cart-variant",
-          iconColor: COLORS.DARK_GREEN,
-          backgroundColor: COLORS.ORANGE,
+          iconColor: "#235C47",
+          backgroundColor: "#e46b67",
           iconType: "material-community",
           todos: [
             {
