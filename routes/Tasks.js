@@ -242,4 +242,29 @@ tasksRouter.delete(
   }
 );
 
+//! SEARCH FOR TASK
+tasksRouter.get("/api/searchTask/:userId/:title", async (req, res) => {
+  try {
+    const partialTitle = req.params.title;
+    const userId = req.params.userId;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ msg: "User not found!" });
+    }
+
+    const matchingTasks = user.listOfTodos.reduce((taskAcc, list) => {
+      const listMatchingTasks = list.todos.filter(
+        (task) =>
+          task.todoTitle.includes(partialTitle) ||
+          new RegExp(partialTitle, "i").test(task.todoTitle)
+      );
+      return taskAcc.concat(listMatchingTasks);
+    }, []);
+
+    res.json(matchingTasks);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = tasksRouter;
